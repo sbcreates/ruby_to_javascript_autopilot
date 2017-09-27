@@ -103,7 +103,7 @@ function driveCar(car, cityDistance){
   };
   car.city = getDestination(car);
   car.gas -= cityDistance;
-  console.log(`Drove to ${car.city}. Remaining gas: ${getGasDisplay(car.gas)}.`);
+  return `Drove to ${car.city}. Remaining gas: ${getGasDisplay(car.gas)}.`;
 }
 driveCar(fleetOfCars[0], 50);
 
@@ -117,9 +117,9 @@ function dropOffPassengers(car) {
   previousPassengers = car.passengers;
   car.passengers = 0;
   if (previousPassengers > 1) {
-    console.log(`Dropped off ${previousPassengers} passengers`);
+    return `Dropped off ${previousPassengers} passengers`;
   } else {
-    console.log(`Dropped off ${previousPassengers} passenger`);
+    return `Dropped off ${previousPassengers} passenger`;
   }
 }
 dropOffPassengers(fleetOfCars[0])
@@ -143,7 +143,28 @@ dropOffPassengers(fleetOfCars[0])
 //     "#{drove_to} #{passengers_dropped}"
 //   end
 // end
-//
+function act(car) {
+  var distanceBetweenCities = 50;
+  if (car.gas < 20){
+    return fillUpGas(car);
+  } else if (car.passengers < 3){
+    return pickUpPassenger(car);
+  } else {
+      if (car.gas < distanceBetweenCities){
+        return fillUpGas(car);
+      }
+      var droveTo = driveCar(car, distanceBetweenCities);
+      var passengersDropped = dropOffPassengers(car);
+      console.log(`${droveTo} ${passengersDropped}`);
+  }
+}
+act(fleetOfCars[0]);
+act(fleetOfCars[0]);
+act(fleetOfCars[0]);
+act(fleetOfCars[0]);
+act(fleetOfCars[0]);
+
+
 // def command_fleet(cars)
 //   cars.each_with_index do |car, i|
 //     action = act(car)
