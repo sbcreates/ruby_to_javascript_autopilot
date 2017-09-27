@@ -63,7 +63,6 @@ function getDestination() {
   }
 })
 }
-
 getDestination();
 
 // def fill_up_gas(car)
@@ -79,3 +78,14 @@ function fillUpGas() {
   })
 }
 fillUpGas();
+
+
+// def get_gas_display(gas_amount)
+//   "#{gas_amount}%"
+// end
+function getGasDisplay() {
+  fleetOfCars.forEach(function(car) {
+    console.log(car.gas);
+  })
+}
+getGasDisplay()
