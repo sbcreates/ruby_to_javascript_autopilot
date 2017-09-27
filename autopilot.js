@@ -6,11 +6,16 @@
 //   }
 // end
 
-var getNewCar = {
-  city: "Toronto",
-  passengers: 0,
-  gas: 100,
+// we want to use a method/function to create a new car because we want to create a new object each time we initiate a new car
+function getNewCar() {
+  return {
+    city: "Toronto",
+    passengers: 0,
+    gas: 100,
+  }
 }
+// need to add return so the function puts out the information otherwise it will return undefined
+
 
 // def add_car(cars, new_car)
 //   cars << new_car
@@ -30,18 +35,16 @@ addCar();
 //   "Picked up passenger. Car now has #{car[:passengers]} passengers."
 // end
 
-function pickUpPassenger() {
-  fleetOfCars.forEach(function(car) {
-    car.passengers++;
-    car.gas -= 10;
-    if (car.passengers > 1) {
-    console.log(`Picked up passenger. Car now has ${car.passengers} passengers`);
-  } else {
-    console.log(`Picked up passenger. Car now has ${car.passengers} passenger`);
-  }
-  })
+function pickUpPassenger(car) {
+  car.passengers++;
+  car.gas -= 10;
+  if (car.passengers > 1) {
+  console.log(`Picked up passenger. Car now has ${car.passengers} passengers`);
+} else {
+  console.log(`Picked up passenger. Car now has ${car.passengers} passenger`);
 }
-pickUpPassenger();
+}
+pickUpPassenger(fleetOfCars[0]);
 
 // def get_destination(car)
 //   if car[:city] == 'Toronto'
@@ -52,40 +55,54 @@ pickUpPassenger();
 //     'Toronto'
 //   end
 // end
-function getDestination() {
-  fleetOfCars.forEach(function(car) {
-    if (car.city === "Toronto") {
-      car.city = "Mississauga";
-  } else if (car.city === "Mississauga") {
-      car.city = "London";
-  } else {
-      car.city = "Toronto";
-  }
-})
+function getDestination(car) {
+  if (car.city === "Toronto") {
+    return "Mississauga";
+} else if (car.city === "Mississauga") {
+    return "London";
+} else {
+    return "Toronto";
 }
-getDestination();
-
+}
+getDestination(fleetOfCars[0]);
+console.log(fleetOfCars[0].city);
 // def fill_up_gas(car)
 //   old_gas = car[:gas]
 //   car[:gas] = 100
 //   "Filled up to #{ get_gas_display(car[:gas]) } on gas from #{ get_gas_display(old_gas) }."
 // end
-function fillUpGas() {
-  fleetOfCars.forEach(function(car) {
-    oldGas = car.gas;
-    car.gas = 100;
-    console.log(`Filled up to ${car.gas} on gas from ${oldGas}`);
-  })
+function fillUpGas(car) {
+  oldGas = car.gas;
+  car.gas = 100;
+  console.log(`Filled up to ${car.gas} on gas from ${oldGas}`);
 }
-fillUpGas();
+fillUpGas(fleetOfCars[0]);
 
 
 // def get_gas_display(gas_amount)
 //   "#{gas_amount}%"
 // end
-function getGasDisplay() {
-  fleetOfCars.forEach(function(car) {
-    console.log(car.gas);
-  })
+function getGasDisplay(gasAmount) {
+  return `${gasAmount}%`;
 }
-getGasDisplay()
+getGasDisplay(fleetOfCars[0].gas);
+
+
+// def drive(car, city_distance)
+//   if car[:gas] < city_distance
+//     return fill_up_gas(car)
+//   end
+//
+//   car[:city] = get_destination(car)
+//   car[:gas] -= city_distance
+//   "Drove to #{car[:city]}. Remaining gas: #{ get_gas_display(car[:gas]) }."
+// end
+function driveCar(car, cityDistance){
+  if (car.gas < cityDistance){
+    return fillUpGas(car);
+  };
+  car.city = getDestination(car);
+  car.gas -= cityDistance;
+  console.log(`Drove to ${car.city}. Remaining gas: ${getGasDisplay(car.gas)}.`);
+}
+driveCar(fleetOfCars[0], 50);
