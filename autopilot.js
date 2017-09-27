@@ -72,7 +72,7 @@ console.log(fleetOfCars[0].city);
 //   "Filled up to #{ get_gas_display(car[:gas]) } on gas from #{ get_gas_display(old_gas) }."
 // end
 function fillUpGas(car) {
-  oldGas = car.gas;
+  var oldGas = car.gas;
   car.gas = 100;
   console.log(`Filled up to ${car.gas} on gas from ${oldGas}`);
 }
@@ -114,7 +114,7 @@ driveCar(fleetOfCars[0], 50);
 //   "Dropped off #{previous_passengers} passengers."
 // end
 function dropOffPassengers(car) {
-  previousPassengers = car.passengers;
+  var previousPassengers = car.passengers;
   car.passengers = 0;
   if (previousPassengers > 1) {
     return `Dropped off ${previousPassengers} passengers`;
@@ -172,7 +172,16 @@ act(fleetOfCars[0]);
 //   end
 //   puts '---'
 // end
-//
+function commandFleet(cars) {
+  cars.forEach(function(car, index){
+    var action = act(car);
+    console.log(`Car ${index + 1}: ${action}`);
+  })
+  console.log("---");
+}
+commandFleet(fleetOfCars)
+
+
 // def add_one_car_per_day(cars, num_days)
 //   num_days.times do
 //     new_car = get_new_car
