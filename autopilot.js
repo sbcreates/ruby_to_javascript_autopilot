@@ -42,3 +42,24 @@ function pickUpPassenger() {
   })
 }
 pickUpPassenger();
+
+// def get_destination(car)
+//   if car[:city] == 'Toronto'
+//     'Mississauga'
+//   elsif car[:city] == 'Mississauga'
+//     'London'
+//   elsif car[:city] == 'London'
+//     'Toronto'
+//   end
+// end
+function getDestination() {
+  fleetOfCars.forEach(function(car) {
+    if (car.city === "Toronto") {
+      car.city = "Mississauga";
+  } else if (car.city === "Mississauga") {
+      car.city = "London";
+  } else {
+      car.city = "Toronto";
+  }
+};
+)}
