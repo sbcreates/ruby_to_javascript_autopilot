@@ -61,5 +61,21 @@ function getDestination() {
   } else {
       car.city = "Toronto";
   }
-};
-)}
+})
+}
+
+getDestination();
+
+// def fill_up_gas(car)
+//   old_gas = car[:gas]
+//   car[:gas] = 100
+//   "Filled up to #{ get_gas_display(car[:gas]) } on gas from #{ get_gas_display(old_gas) }."
+// end
+function fillUpGas() {
+  fleetOfCars.forEach(function(car) {
+    oldGas = car.gas;
+    car.gas = 100;
+    console.log(`Filled up to ${car.gas} on gas from ${oldGas}`);
+  })
+}
+fillUpGas();
