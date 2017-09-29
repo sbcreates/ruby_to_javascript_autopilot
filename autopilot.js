@@ -9,7 +9,7 @@
 // we want to use a method/function to create a new car because we want to create a new object each time we initiate a new car
 function getNewCar() {
   return {
-    city: "Toronto",
+    city: 'Toronto',
     passengers: 0,
     gas: 100,
   }
@@ -21,14 +21,13 @@ function getNewCar() {
 //   cars << new_car
 //   "Adding new car to fleet. Fleet size is now #{cars.length}."
 // end
-var fleetOfCars = []
 
-function addCar() {
-  fleetOfCars.push(getNewCar());
-  return(`Adding new car to fleet. Fleet size is now ${fleetOfCars.length}`);
+function addCar(newCar) {
+  fleetOfCars.push(newCar);
+  return (`Adding new car to fleet. Fleet size is now ${fleetOfCars.length}`);
 }
-console.log("---");
-console.log(addCar())
+// console.log("---");
+// console.log(addCar())
 
 // def pick_up_passenger(car)
 //   car[:passengers] += 1
@@ -45,8 +44,8 @@ function pickUpPassenger(car) {
   return(`Picked up passenger. Car now has ${car.passengers} passenger`);
 }
 }
-console.log("---");
-console.log(pickUpPassenger(fleetOfCars[0]));
+// console.log("---");
+// console.log(pickUpPassenger(fleetOfCars[0]));
 
 // def get_destination(car)
 //   if car[:city] == 'Toronto'
@@ -58,16 +57,16 @@ console.log(pickUpPassenger(fleetOfCars[0]));
 //   end
 // end
 function getDestination(car) {
-  if (car.city === "Toronto") {
-    return "Mississauga";
-} else if (car.city === "Mississauga") {
-    return "London";
+  if (car.city === 'Toronto') {
+    return 'Mississauga';
+} else if (car.city === 'Mississauga') {
+    return 'London';
 } else {
-    return "Toronto";
+    return 'Toronto';
 }
 }
-console.log("---");
-console.log(getDestination(fleetOfCars[0]))
+// console.log("---");
+// console.log(getDestination(fleetOfCars[0]))
 
 // def fill_up_gas(car)
 //   old_gas = car[:gas]
@@ -79,8 +78,8 @@ function fillUpGas(car) {
   car.gas = 100;
   return(`Filled up to ${car.gas} on gas from ${oldGas}`);
 }
-console.log("---");
-console.log(fillUpGas(fleetOfCars[0]))
+// console.log("---");
+// console.log(fillUpGas(fleetOfCars[0]))
 
 
 // def get_gas_display(gas_amount)
@@ -89,8 +88,8 @@ console.log(fillUpGas(fleetOfCars[0]))
 function getGasDisplay(gasAmount) {
   return `${gasAmount}%`;
 }
-console.log("---");
-console.log(getGasDisplay(fleetOfCars[0].gas))
+// console.log("---");
+// console.log(getGasDisplay(fleetOfCars[0].gas))
 
 
 // def drive(car, city_distance)
@@ -110,8 +109,8 @@ function driveCar(car, cityDistance){
   car.gas -= cityDistance;
   return `Drove to ${car.city}. Remaining gas: ${getGasDisplay(car.gas)}.`;
 }
-console.log("---");
-console.log(driveCar(fleetOfCars[0], 50))
+// console.log("---");
+// console.log(driveCar(fleetOfCars[0], 50))
 
 
 // def drop_off_passengers(car)
@@ -128,8 +127,8 @@ function dropOffPassengers(car) {
     return `Dropped off ${previousPassengers} passenger`;
   }
 }
-console.log("---");
-console.log(dropOffPassengers(fleetOfCars[0]))
+// console.log("---");
+// console.log(dropOffPassengers(fleetOfCars[0]))
 
 
 // def act(car)
@@ -162,16 +161,15 @@ function act(car) {
       };
       var droveTo = driveCar(car, distanceBetweenCities);
       var passengersDropped = dropOffPassengers(car);
-       //console.log(`${car} ${droveTo} ${passengersDropped}`);
       return droveTo + ' ' + passengersDropped;
   }
 }
-console.log("---");
-console.log(act(fleetOfCars[0]));
-console.log(act(fleetOfCars[0]));
-console.log(act(fleetOfCars[0]));
-console.log(act(fleetOfCars[0]));
-console.log(act(fleetOfCars[0]));
+// console.log("---");
+// console.log(act(fleetOfCars[0]));
+// console.log(act(fleetOfCars[0]));
+// console.log(act(fleetOfCars[0]));
+// console.log(act(fleetOfCars[0]));
+// console.log(act(fleetOfCars[0]));
 
 
 // def command_fleet(cars)
@@ -182,14 +180,14 @@ console.log(act(fleetOfCars[0]));
 //   puts '---'
 // end
 function commandFleet(cars) {
-  for (var i = 0; i < cars.length; i++) {
-    var action = act(cars[i]);
-    console.log(`Car ${i + 1}: ${action}`);
+  for (var index = 0; index < cars.length; index++) {
+    var action = act(cars[index]);
+    console.log(`Car ${index + 1}: ${action}`);
   }
-  console.log("---");
+  console.log('---');
 }
-console.log("---");
-commandFleet(fleetOfCars)
+// console.log("---");
+// commandFleet(fleetOfCars)
 
 
 // def add_one_car_per_day(cars, num_days)
@@ -199,6 +197,15 @@ commandFleet(fleetOfCars)
 //     command_fleet(cars)
 //   end
 // end
-//
+function addOneCarPerDay(cars, numDays) {
+  for (var i = 0; i < numDays; i++) {
+    var newCar = getNewCar();
+    console.log(addCar(newCar));
+    commandFleet(cars);
+  }
+}
+
 // cars = []
 // add_one_car_per_day(cars, 10)
+var fleetOfCars = [];
+addOneCarPerDay(fleetOfCars, 10)
